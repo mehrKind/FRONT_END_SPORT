@@ -12,8 +12,12 @@ const Cycling = () => {
             <CycleInfo/>
             <Worklist/>
             <Habits/>
+            <div className="spacer mb-[3rem]"></div>
+            <div className="startCycle fixed flex justify-center bottom-5 z-[99] w-full left-0">
+                <a href="/" className="bg-blue-600 py-2 text-white yekanBold w-[83%] hover:bg-blue-400 transition-all duration-200 cursor-pointer text-center">شروع</a>
+            </div>
         </div>
     )
 }
 
-export default Cycling
+export default Cycling;

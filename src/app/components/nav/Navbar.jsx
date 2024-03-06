@@ -3,8 +3,10 @@ import axios from 'axios'; // Make sure to install this package
 import { RiMenu2Line } from "react-icons/ri";
 import { IoIosSearch } from "react-icons/io";
 import { FiX } from 'react-icons/fi';
-import { IoExitOutline } from "react-icons/io5";
-import {Progress, progress} from "@material-tailwind/react";
+import { IoExitOutline, IoSettingsOutline } from "react-icons/io5";
+import { CgProfile } from "react-icons/cg";
+import { PieChart } from '@mui/x-charts/PieChart';
+
 
 // read this doc for tailwind react styles
 // https://www.material-tailwind.com/docs/react/alert
@@ -63,13 +65,13 @@ const downMenu = [
     id: 1,
     data: "پروفایل",
     link: '/profile',
-    icon: null
+    icon: <CgProfile className="ml-2 text-[1.5rem]"/>
   },
   {
     id: 2,
     data: "تنظیمات",
     link: "#",
-    icon: null
+    icon: <IoSettingsOutline className="ml-2 text-[1.5rem]"/>
   }
 ];
 
@@ -79,7 +81,7 @@ if (token){
         id: 3,
         data: 'خروج',
         link: "#",
-        icon: <IoExitOutline className='ml-1' />
+        icon: <IoExitOutline className="ml-2 text-[1.5rem]" />
       }
   )
 }
@@ -213,9 +215,74 @@ const Navbar = () => {
                           }}> <FiX className="hover:text-black transition-all duration-100"/> </button>
                         </div>
 
-                        <div className="user-profile flex justify-center">
-                          <img src={userProfile ? userProfile.profileImage : 'pro'} className="w-[200px] h-[200px] rounded-full" alt=""/>
+                        {/*<div className="user-profile flex justify-center">*/}
+                        {/*  <img src={userProfile ? userProfile.profileImage : 'pro'} className="w-[200px] h-[200px] rounded-full" alt=""/>*/}
+                        {/*</div>*/}
+                        <p className="text-gray-700 text-lg">نمودار عملکرد</p>
+                        <div className="flex justify-center items-center">
+                          <PieChart
+                              series={[
+                                {
+                                  data: [
+                                    { value: 10, color: 'orange'},
+                                    { value: 15, color: 'blue'},
+                                    { value: 20, color: 'green' },
+                                    { value: 25, color: 'red' },
+                                    { value: 25, color: 'purple' },
+                                    { value: 30, color: 'pink' },
+                                  ],
+                                  innerRadius: 40,
+                                  outerRadius: 120,
+                                  paddingAngle: 3,
+                                  cornerRadius: 5,
+                                  startAngle: -90,
+                                  endAngle: 180,
+                                  cx: 125,
+                                  cy: 125,
+                                }
+                              ]}
+                              height={300}
+                          />
                         </div>
+                        <div className="chart-content -mt-5 grid grid-cols-2">
+                          {/* left side for the chart description */}
+                          <div className="left-chart-content">
+                            {/* دویدن */}
+                            <div className="items-chart flex items-center justify-center">
+                              <p className="item-name">دویدن</p>
+                              <span className="w-[10px] h-[10px] bg-purple-700 ml-2"></span>
+                            </div>
+                            {/* دوچرخه */}
+                            <div className="items-chart flex items-center justify-center">
+                              <p className="item-name">دوچرخه</p>
+                              <span className="w-[10px] h-[10px] bg-red-500 ml-2"></span>
+                            </div>
+                            {/* شنا */}
+                            <div className="items-chart flex items-center justify-center">
+                              <p className="item-name">شنا</p>
+                              <span className="w-[10px] h-[10px] bg-green-700 ml-2"></span>
+                            </div>
+                          </div>
+                          {/* right side for the chart description */}
+                          <div className="right-chart-content">
+                            {/* دویدن */}
+                            <div className="items-chart flex items-center justify-center">
+                              <p className="item-name">فوتبال</p>
+                              <span className="w-[10px] h-[10px] bg-blue-600 ml-2"></span>
+                            </div>
+                            {/* دوچرخه */}
+                            <div className="items-chart flex items-center justify-center">
+                              <p className="item-name">کوهنوردی</p>
+                              <span className="w-[10px] h-[10px] bg-orange-500 ml-2"></span>
+                            </div>
+                            {/* شنا */}
+                            <div className="items-chart flex items-center justify-center">
+                              <p className="item-name">تنیس</p>
+                              <span className="w-[10px] h-[10px] bg-pink-200 ml-2"></span>
+                            </div>
+                          </div>
+                        </div>
+                        <hr className="my-3"/>
                         <div className="content mt-5">
                           <p className="text-gray-500">{userInfo ? `${userInfo.first_name} ${userInfo.last_name}` : 'loading'}</p>
                           <div className="level grid grid-cols-2 mt-3 items-center">
@@ -223,6 +290,12 @@ const Navbar = () => {
                               <div className="progress_percent absolute bg-blue-500 left-0 h-[8px] w-[50%] rounded"></div>
                             </div>
                             <p style={{direction:"rtl"}}>پیشرفت: 50%</p>
+                          </div>
+                          <div className="level grid grid-cols-2 mt-3 items-center">
+                            <div className="progressTemplate w-full h-[8px] bg-gray-300 rounded-full relative">
+                              <div className="progress_percent absolute bg-green-500 left-0 h-[8px] w-[65%] rounded"></div>
+                            </div>
+                            <p style={{direction:"rtl"}}>امتیاز 100 / 65</p>
                           </div>
                         </div>
                       </div>
