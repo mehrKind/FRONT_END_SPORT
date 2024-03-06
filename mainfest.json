@@ -1,0 +1,14 @@
+{
+    "name": "Fit your self with FitMe!",
+    "short_name": "FitMe",
+    "description": "An amazing web app!",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#fdb3c4",
+    "icons": [{
+        "src": "/src/assets/main_icon.png",
+        "sizes": "192x192",
+        "type": "image/png"
+    }]
+}
