@@ -13,6 +13,10 @@ const RunGame = () => {
                 <p className="text-gray-500 text-[16px]">امروز {today}</p>
             </div>
 
+            <div className="runStart bg-[url('../../assets/images/cycleBG.jpeg')] w-full h-full">
+
+            </div>
+
         </div>
     )
 }
