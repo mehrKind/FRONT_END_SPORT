@@ -29,13 +29,13 @@ const Worklist = () => {
                 <Slider {...settings}>
                     <div>
                         <div className="grid grid-cols-3 gap-3 p-2">
-                            <a href="/sports/cycling" className='group'>
+                            <a href="/sports/running" className='group'>
                                 <div className="workCard bg-white group-hover:bg-blue-700 transition-all duration-200 py-3 px-5 block text-center align-middle rounded-lg shadow-md border-solid border-[.5px] border-gray-200/65 text-black group-hover:text-white">
                                     <span className='flex justify-center items-center mb-1 transition-all duration-200'><PiPersonSimpleRunDuotone className='text-4xl text-green-400 group-hover:text-white' /></span>
                                     <p className='yekanMed'>دویدن</p>
                                 </div>
                             </a>
-                            <a href="#" className='group'>
+                            <a href="/sports/cycling" className='group'>
                                 <div className="workCard bg-white group-hover:bg-blue-700 transition-all duration-200 py-3 px-5 block text-center align-middle rounded-lg shadow-md border-solid border-[.5px] border-gray-200/65 text-black group-hover:text-white">
                                     <span className='flex justify-center items-center mb-1 transition-all duration-200'><IoBicycleOutline className='text-4xl text-pink-400 group-hover:text-white' /></span>
                                     <p className='yekanMed'>دوچرخه</p>
