@@ -3,12 +3,7 @@ import axios from 'axios'; // Make sure to install this package
 import appLogo from '../../../assets/main_icon.png';
 import MehrAlert from "../nav/MehrAlert.jsx";
 import { useNavigate } from 'react-router-dom';
-
-
-const localHost = "http://127.0.0.1:"
-const ipHost = "http://192.168.42.50:"
-const port = "8000/"
-const Host = ipHost
+import {Host, port} from "../../config.jsx";
 
 
 const Login = () => {

@@ -6,17 +6,11 @@ import { FiX } from 'react-icons/fi';
 import { IoExitOutline, IoSettingsOutline } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { PieChart } from '@mui/x-charts/PieChart';
-
+import {port, Host} from "../../config.jsx";
 
 // read this doc for tailwind react styles
 // https://www.material-tailwind.com/docs/react/alert
 
-// host api config
-
-const localHost = "http://127.0.0.1:"
-const ipHost = "http://192.168.42.50:"
-const port = "8000/"
-const Host = ipHost
 
 const token = localStorage.getItem("access_token");
 // localStorage.removeItem("access_token")
@@ -80,7 +74,7 @@ if (token){
       {
         id: 3,
         data: 'خروج',
-        link: "#",
+        link: '/logout',
         icon: <IoExitOutline className="ml-2 text-[1.5rem]" />
       }
   )
@@ -102,6 +96,8 @@ const Navbar = () => {
   const [userInfo, setUserInfo] = useState(null);
   const [userProfile, setUserProfile] = useState(null);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+
+  // get user information => username, password, ...
   const fetchUserInfo = async () => {
     try {
       const response = await axios.get(`${Host}${port}api/v1/accounts/user_info`, {
@@ -114,10 +110,11 @@ const Navbar = () => {
         setUserInfo(response.data[0]); // assuming the response is an array
       }
     } catch (error) {
-      console.log("some thing went wrong! try again later")
+      console.log("can't fetch user information")
     }
   };
 
+  // get user profile information 💃🏻💃🏻💃🏻
   const fetchUserProfile = async ()=>{
     try{
       const response = await axios.get(`${Host}${port}api/v1/accounts/user_profile`, {
@@ -129,7 +126,25 @@ const Navbar = () => {
         setUserProfile(response.data[0])
       }
     } catch (error){
-      console.log("some thing went wrong. try again later")
+      console.log("can't fetch user profile information")
+    }
+  }
+
+  // logout user and remove the access token JWT authentication (django) from localStorage
+
+  const logoutUser = async () => {
+    try {
+      const response = await axios.get(`${Host}${port}api/v1/accounts/logout`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+        }
+      });
+      if (response.status === 200){
+        console.log('Status:', response.status);
+        localStorage.removeItem("access_token")
+      }
+    } catch (error) {
+      console.log("Something went wrong. Try again later");
     }
   }
 

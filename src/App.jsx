@@ -6,7 +6,6 @@ import Profile from "./app/Profile.jsx";
 import Contact from "./app/Contact.jsx";
 import Accounts from "./app/Accounts.jsx";
 
-
 const App = () => {
   return (
     <BrowserRouter>

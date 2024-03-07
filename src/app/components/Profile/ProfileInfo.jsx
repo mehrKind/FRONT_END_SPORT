@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import userImage from "../../../assets/images/user-1.jpg";
 import { MdModeEdit } from "react-icons/md";
 import UserSummery from "./UserSummery.jsx";
 import axios from "axios";
+import {port, Host} from "../../config.jsx";
 
 const localHost = "http://127.0.0.1:"
-const ipHost = "http://192.168.42.50:"
-const port = "8000/"
-const Host = ipHost
+
 
 const token = localStorage.getItem("access_token");
 // localStorage.removeItem("access_token")
@@ -28,7 +26,8 @@ const ProfileInfo = ()=>{
                 setUserInfo(response.data[0]); // assuming the response is an array
             }
         } catch (error) {
-            console.log("some thing went wrong! try again later")
+            console.log("user profile can't load");
+            console.log(`error: ${error}`)
         }
     };
 
