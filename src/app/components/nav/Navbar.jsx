@@ -14,7 +14,6 @@ import {port, Host} from "../../config.jsx";
 
 const token = localStorage.getItem("access_token");
 // localStorage.removeItem("access_token")
-
 //! top Menu
 const upMenu = [
   {
@@ -219,7 +218,7 @@ const Navbar = () => {
               <img src={userProfile ? userProfile.profileImage : 'pro'} alt="User Profile" className='rounded-full w-[46px] h-[46px] cursor-pointer' />
               {/* user information popup */}
               { isProfileOpen && (
-                  <div className="userProfileInformation absolute h-[100vh] bg-gray-900/20 z-[10] left-0 top-0 right-0 bottom-0">
+                  <div className="userProfileInformation absolute h-[100vh] bg-gray-900/20 z-[999] left-0 top-0 right-0 bottom-0">
                     <div className="userInfo flex text-center justify-center items-center h-full">
                       <div className="profile-card bg-white w-[300px] flex-column justify-center text-center items-center p-5 rounded-lg shadow-lg">
                         {/* close button */}

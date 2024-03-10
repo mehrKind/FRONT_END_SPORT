@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios'; // Make sure to install this package
+import axios from 'axios';
 import appLogo from '../../../assets/main_icon.png';
 import MehrAlert from "../nav/MehrAlert.jsx";
 import { useNavigate } from 'react-router-dom';
@@ -68,7 +68,7 @@ const Login = () => {
                     <div className="forget-part px-2 my-4 text-md">
                         <a className="text-blue-500" href="#">فراموشی رمز عبور ؟</a>
                         <hr className="my-4"/>
-                        <p className="text-gray-500"> حساب ندارید؟ <a className="text-blue-500 mr-5" href="http://127.0.0.1:8000/api/v1/accounts/logout">رایگان حساب ایجاد کنید</a></p>
+                        <p className="text-gray-500"> حساب ندارید؟ <a className="text-blue-500 mr-5" href="/accounts/register">رایگان حساب ایجاد کنید</a></p>
                     </div>
                 </div>
             </div>
