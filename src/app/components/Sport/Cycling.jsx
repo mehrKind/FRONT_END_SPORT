@@ -23,7 +23,7 @@ const Cycling = () => {
             <div className="runStart w-[100%] h-[330px] bg-cover bg-no-repeat relative mt-5 rounded-[40px] grid grid-cols-2" style={{backgroundImage: `url(${cycleBG})`}}>
                 <div className="startButton bg-white absolute p-4 rounded-bl-[40px] right-0 -top-0 border-l-2 border-b-2 border-gray-400">
                     <div className="start_btn bg-gray-600 p-3 rounded-xl flex items-center justify-center">
-                        <a href="#" className=""> <IoPlayOutline className="text-white text-4xl"/> </a>
+                        <a href="/sports/start-cycle" className=""> <IoPlayOutline className="text-white text-4xl"/> </a>
                     </div>
                 </div>
                 {/*  left side */}
