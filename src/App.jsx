@@ -6,6 +6,7 @@ import Profile from "./app/Profile.jsx";
 import Contact from "./app/Contact.jsx";
 import Accounts from "./app/Accounts.jsx";
 
+// main pink color : #fdb3c4
 const App = () => {
   return (
     <BrowserRouter>

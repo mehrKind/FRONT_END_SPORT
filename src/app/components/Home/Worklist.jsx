@@ -7,6 +7,7 @@ import { CiMountain1 } from "react-icons/ci";
 import Slider from "react-slick";
 
 
+
 const Worklist = () => {
     // slider setting for list of works
     var settings = {

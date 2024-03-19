@@ -13,7 +13,7 @@ import {port, Host} from "../../config.jsx";
 
 
 const token = localStorage.getItem("access_token");
-// localStorage.removeItem("access_token")
+localStorage.removeItem("access_token")
 //! top Menu
 const upMenu = [
   {

@@ -66,7 +66,7 @@ const Login = () => {
                         <button type="submit" className="w-full bg-blue-500 rounded-xl text-white py-3 hover:bg-blue-400 transition-all duration-200">ورود</button>
                     </form>
                     <div className="forget-part px-2 my-4 text-md">
-                        <a className="text-blue-500" href="#">فراموشی رمز عبور ؟</a>
+                        <a className="text-blue-500" href="/accounts/forget-password">فراموشی رمز عبور ؟</a>
                         <hr className="my-4"/>
                         <p className="text-gray-500"> حساب ندارید؟ <a className="text-blue-500 mr-5" href="/accounts/register">رایگان حساب ایجاد کنید</a></p>
                     </div>

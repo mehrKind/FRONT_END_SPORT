@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { MdModeEdit } from "react-icons/md";
 import UserSummery from "./UserSummery.jsx";
+import { FaCamera } from "react-icons/fa";
 import axios from "axios";
 import {port, Host} from "../../config.jsx";
 
-const localHost = "http://127.0.0.1:"
-
-
-const token = localStorage.getItem("access_token");
 // localStorage.removeItem("access_token")
 
 const ProfileInfo = ()=>{
@@ -56,10 +53,10 @@ const ProfileInfo = ()=>{
             {/* user profile */}
             <div className="ProfileImage flex justify-center relative">
                 <img src={userProfile ? userProfile.profileImage : 'profile-image'} alt="User Profile" className='rounded-full w-[150px] h-[150px]' />
-                <a href="#" className="EditBtn absolute -bottom-3 border-[2px] border-white bg-blue-500 p-2 rounded-full">
+                <a href="#" className="EditBtn absolute bottom-2 left-[8rem] border-[2px] border-white bg-blue-500 p-2 rounded-full">
                     {/* edit Button */}
                     <div>
-                        <MdModeEdit className="text-xl text-white"/>
+                        <FaCamera className="text-[0.9rem] text-white"/>
                     </div>
                 </a>
             </div>
