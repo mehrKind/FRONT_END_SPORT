@@ -4,11 +4,7 @@ import contactus from '../assets/contactUs.png'
 import axios from "axios";
 import MehrAlert from "./components/nav/MehrAlert.jsx";
 import { useNavigate } from 'react-router-dom';
-
-const localHost = "http://127.0.0.1:"
-const ipHost = "http://192.168.42.50:"
-const port = "8000/"
-const Host = ipHost
+import {port, Host} from "./config.jsx";
 
 const token = localStorage.getItem("access_token");
 // localStorage.removeItem("access_token")
@@ -21,7 +17,8 @@ const Contact = () => {
     const [showAlert, setShowAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
     const [alertStatus, setAlertStatus] = useState(false);
-    console.log(localStorage.getItem('username'));
+    const [messageCount, setMessageCount] = useState(0);
+    // console.log(localStorage.getItem('username'));
 
 
     // function to close the popUp menu
@@ -35,22 +32,21 @@ const Contact = () => {
 
         try {
             // console.log(userId)
-            const response = await axios.post(Host+port+'api/v1/contact/', {
+            const response = await axios.post(Host+port+'contact-us/', {
                 textBody: textBody,
-                user: userId
             }, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('access_token')}`
                 }
             });
 
-            if (response.status === 200) {
+            if (response.status === 201) {
                 setAlertMessage("با موققیت ارسال شد");
                 setAlertStatus(true);
                 setShowAlert(true);
                 // console.log(response.data)
                 setTimeout(()=>{
-                    navigate("/")
+                    window.location.reload()
                 }, 2000)
             } else {
                 setAlertMessage(`خطای ${response.status}`);
@@ -66,6 +62,28 @@ const Contact = () => {
         }
     };
 
+    const fetchMessageCount = async () => {
+        try {
+            const response = await axios.get(Host+port+'contact-us/message_count/', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                }
+            });
+
+            if (response.status === 200) {
+                setMessageCount(response.data.count);
+            } else {
+                console.error(`Error: ${response.status}`);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchMessageCount();
+    }, []);
+
 
     return (
         <div className="container yekan">
@@ -74,6 +92,17 @@ const Contact = () => {
             <div className="contact-us-img flex justify-center">
                 <img src={contactus} className="w-[350px]" alt="contactPage"/>
             </div>
+
+            {/* message Buttons */}
+            <div className="messageButton text-center">
+                <div className="flex text-[14px] overflow-x-auto whitespace-nowrap gap-3" style={{scrollbarWidth:"none"}}>
+                    <a className="border-2 p-2 rounded-lg border-green-600 text-green-600" href="#">پاسخ داده شده (0)</a>
+                    <a className="border-2 p-2 rounded-lg border-blue-500 text-blue-700" href="#">همه پیام ها ({messageCount})</a>
+                    <a className="border-2 p-2 rounded-lg border-yellow-400 text-yellow-400" href="#">در انتظار (0)</a>
+                    <a className="border-2 p-2 rounded-lg border-purple-700 text-purple-700" href="#">آخرین پیام ها ({messageCount})</a>
+                </div>
+            </div>
+
             <div className="contact-us-form mt-2 text-right">
                 {/*<p>همراه دوم - علیرضا مهربان</p>*/}
                 <textarea

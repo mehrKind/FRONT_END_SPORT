@@ -13,7 +13,7 @@ import {port, Host} from "../../config.jsx";
 
 
 const token = localStorage.getItem("access_token");
-localStorage.removeItem("access_token")
+// localStorage.removeItem("access_token")
 //! top Menu
 const upMenu = [
   {
@@ -48,6 +48,11 @@ const upMenu = [
   {
     id: 7,
     data: "منابع",
+    link: "#"
+  },
+  {
+    id: 8,
+    data: "گپ عمومی",
     link: "#"
   }
 ];
@@ -133,7 +138,7 @@ const Navbar = () => {
 
   const logoutUser = async () => {
     try {
-      const response = await axios.get(`${Host}${port}api/v1/accounts/logout`, {
+      const response = await axios.post(`${Host}${port}api/v1/accounts/logout/`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('access_token')}`
         }
@@ -185,7 +190,19 @@ const Navbar = () => {
                       downMenu.map((item) => {
                         return (
                           <li key={item.id}>
-                            <a className='flex items-center p-2 hover:text-blue-600 hover:bg-blue-200 rounded-lg transition-all duration-200' href={item.link}>{item.icon} {item.data}</a>
+                            <a
+                                className='flex items-center p-2 hover:text-blue-600 hover:bg-blue-200 rounded-lg transition-all duration-200'
+                                href={item.link}
+                                onClick={(event)=>{
+                                  // event.preventDefault();
+                                  if (item.data === "خروج"){
+                                    logoutUser();
+                                  }
+                                }
+                                }
+                            >
+                              {item.icon} {item.data}
+                            </a>
                           </li>
                         )
                       })

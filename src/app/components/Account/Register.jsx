@@ -16,7 +16,7 @@ const Register = ()=>{
     const [alertMessage, setAlertMessage] = useState('');
     const [alertStatus, setAlertStatus] = useState(false);
     const [state, setState] = useState({
-        fullName: '',
+        firstName: '',
         phoneNumber: '',
         email: '',
         username: '',
@@ -28,16 +28,10 @@ const Register = ()=>{
     // register request api
     const handleRegister = async (event) => {
         event.preventDefault();
-
-        // Split the full name into first and last name
-        let names = state.fullName.split(' ');
-        let firstName = names[0];
-        let lastName = names.length > 1 ? names.slice(1).join(' ') : '';
         // Assuming you have state variables for each field in your form
         try {
             const response = await axios.post(Host + port + 'api/v1/accounts/register/', {
-                first_name: firstName,
-                last_name: lastName,
+                first_name: state.firstName,
                 phone_number: state.phoneNumber,
                 email: state.email,
                 username: state.username,
@@ -78,27 +72,27 @@ const Register = ()=>{
                 {/* get the full name (first_name abd last_name) */}
                 <div className="inputText border-[1px] border-gray-300 flex py-3 px-6 rounded-[8px] mb-4" style={{direction:"rtl"}}>
                     <RiAccountCircleLine className="text-2xl text-gray-400 ml-3"/>
-                    <input name="fullName" type="text" placeholder="نام و نام خانوادگی" className="outline-none border-none text-[17px] w-full"/>
+                    <input name="fullName" type="text" placeholder="نام و نام خانوادگی" value={state.firstName} onChange={e => setState({...state, firstName: e.target.value})} className="outline-none border-none text-[17px] w-full bg-transparent" required/>
                 </div>
                 {/* get the phoneNumber */}
                 <div className="inputText border-[1px] border-gray-300 flex py-3 px-6 rounded-[8px] mb-4" style={{direction:"rtl"}}>
                     <BsTelephone className="text-2xl text-gray-400 ml-3"/>
-                    <input name="phoneNumber" type="tel" placeholder="شماره تلفن" className="outline-none border-none text-[17px] text-right w-full"/>
+                    <input name="phoneNumber" type="tel" placeholder="شماره تلفن" value={state.phoneNumber} onChange={e => setState({...state, phoneNumber: e.target.value})} className="outline-none border-none text-[17px] text-right w-full bg-transparent" required/>
                 </div>
                 {/* get the email (optional) */}
                 <div className="inputText border-[1px] border-gray-300 flex py-3 px-6 rounded-[8px] mb-4" style={{direction:"rtl"}}>
                     <CiMail className="text-2xl text-gray-400 ml-3"/>
-                    <input name="email" type="email" placeholder="ایمیل (اختیاری)" className="outline-none border-none text-[17px] w-full"/>
+                    <input name="email" type="email" placeholder="ایمیل (اختیاری)" value={state.email} onChange={e => setState({...state, email: e.target.value})} className="outline-none border-none text-[17px] w-full bg-transparent" required/>
                 </div>
                 {/* get the username*/}
                 <div className="inputText border-[1px] border-gray-300 flex py-3 px-6 rounded-[8px] mb-4" style={{direction:"rtl"}}>
                     <RiAccountCircleLine className="text-2xl text-gray-400 ml-3"/>
-                    <input name="username" type="text" placeholder="نام کاربری" value={state.username} onChange={e => setState({...state, username: e.target.value})} className="outline-none border-none text-[17px] w-full"/>
+                    <input name="username" type="text" placeholder="نام کاربری" value={state.username} onChange={e => setState({...state, username: e.target.value})} className="outline-none border-none text-[17px] w-full bg-transparent"/>
                 </div>
                 {/* get the password */}
                 <div className="inputText border-[1px] border-gray-300 flex py-3 px-6 rounded-[8px] mb-4" style={{direction:"rtl"}}>
                     <LuKeyRound className="text-2xl text-gray-400 ml-3"/>
-                    <input name="password" type="password" placeholder="انتخاب رمز عبور" value={state.password} onChange={e => setState({...state, password: e.target.value})} className="outline-none border-none text-[17px] w-full"/>
+                    <input name="password" type="password" required placeholder="انتخاب رمز عبور" value={state.password} onChange={e => setState({...state, password: e.target.value})} className="outline-none border-none text-[17px] w-full bg-transparent"/>
                 </div>
                 {/* submit the form via this button */}
                 <div className="button-form w-full text-center mt-6">
